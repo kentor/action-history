@@ -7,6 +7,7 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
+import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
@@ -43,6 +44,12 @@ public class ExamplePlugin extends Plugin
 		{
 			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Example says " + config.greeting(), null);
 		}
+	}
+
+	@Subscribe
+	public void onMenuOptionClicked(MenuOptionClicked click) {
+		String option = click.getMenuEntry().getOption();
+		String target = click.getMenuEntry().getTarget();
 	}
 
 	@Provides
